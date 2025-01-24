@@ -14,35 +14,36 @@ const Sidebar = () => {
     SideBarActions.toggleSidebar(!sidebar);
   };
 
-  const logWidth=()=>{
-    if(window.innerWidth>1024){
+  const updateWidth=()=>{
+    if(window.innerWidth>=1024){
       SideBarActions.toggleSidebar(true);
       }
     }
 
   useEffect(()=>{
-      window.addEventListener("resize", logWidth);
+    updateWidth();
+      window.addEventListener("resize", updateWidth);
 
-      return ()=>{window.removeEventListener('resize',logWidth)}
+      return ()=>{window.removeEventListener('resize',updateWidth)}
   },[])
   
 
   return (
     <aside
-      className={`flex fixed xl:relative top-[75px] xl:top-0 duration-200 w-full h-[calc(100%-75px)] xl:min-h-[calc(100vh-75px)] z-10 ${
-        sidebar ? "left-0" : "left-[-100%]"
-      } xl:w-fit`}
+      className={`flex fixed lg:relative top-[75px] lg:top-0 duration-200 w-full h-[calc(100%-75px)] lg:min-h-[calc(100vh-75px)] z-10 ${
+        sidebar ? "left-0" : " translate-x-[-100%]"
+      } lg:w-[35%] xl:w-[25%]`}
     >
-      <div className="bg-slate-100 w-full lg:w-[50%] xl:w-full border-r px-[3%] py-4 xl:px-2 gap-y-2 flex flex-col">
+      <div className="bg-slate-100 w-full border-r px-[3%] py-4 lg:px-2 gap-y-2 flex flex-col">
         <UserNameSection />
-        <SidebarRow name='Posts' icon={<IoGrid />} count={6}/>
-        <SidebarRow name='Users' icon={<LuUsers />} count={6}/>
-        <SidebarRow name='Settings' icon={<IoMdSettings />} count={6}/>
+        <SidebarRow name='Posts' icon={<IoGrid className="text-2xl"/>} count={6} path={'/'}/>
+        <SidebarRow name='Users' icon={<LuUsers className="text-2xl"/>} count={6} path={'/users'}/>
+        <SidebarRow name='Settings' icon={<IoMdSettings className="text-2xl"/>} count={6} path={'/settings'}/>
       </div>
 
       <div
         onClick={closeSidebar}
-        className={`bg-red-400 lg:w-full opacity-90 xl:hidden`}
+        className={`bg-red-400 opacity-90 hidden sm:block w-full lg:hidden`}
       ></div>
     </aside>
   );

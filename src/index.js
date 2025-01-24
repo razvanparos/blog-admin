@@ -8,6 +8,8 @@ import Layout from "./pages/Layout.tsx";
 import LoginPage from "./pages/LoginPage.tsx";
 import RegisterPage from "./pages/RegisterPage.tsx";
 import AppProvider from "./context/AppContext.tsx";
+import Users from "./pages/Users.tsx";
+import Settings from "./pages/Settings.tsx";
 
 const App = () => {
   return (
@@ -16,9 +18,11 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
-            <Route path="login" element={<LoginPage />} />
-            <Route path="register" element={<RegisterPage />} />
+            <Route path="users" element={<Users />} />
+            <Route path="settings" element={<Settings />} />
           </Route>
+          <Route path="login" element={<LoginPage />} />
+          <Route path="register" element={<RegisterPage />} />
         </Routes>
       </BrowserRouter>
     </AppProvider>

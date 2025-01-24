@@ -2,7 +2,7 @@ import React from 'react';
 
 const Home = ()=>{
     return(
-        <div className="border-2 border-red-500 w-full">
+        <div className="w-full p-4">
             <p>Posts</p>
         </div>
     );
