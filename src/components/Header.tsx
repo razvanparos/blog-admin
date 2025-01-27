@@ -9,7 +9,7 @@ const Header = () => {
   return (
     <header className="z-20 h-[75px] border-b border-lightGray flex items-center justify-between px-[3%] sticky xl:relative top-0 bg-white">
       <BlogLogo/>
-      {/* <button onClick={()=>{console.log(state)}}>click</button> */}
+      <button onClick={()=>{console.log(state)}}>click</button>
       <MenuToggleButton/>
     </header>
   );

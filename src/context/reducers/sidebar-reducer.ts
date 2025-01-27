@@ -1,6 +1,5 @@
 import { SIDEBAR_TOGGLE } from "../actions/sidebar-acions.ts";
 
-
 const sidebarReducer = (state, action) => {
     const  sidebar  = action.payload.sidebar;
   

@@ -1,6 +1,8 @@
+import postsReducer from "./postsReducers.ts";
 import sidebarReducer from "./sidebar-reducer.ts";
 
-const allReducers = [sidebarReducer];
+
+const allReducers = [sidebarReducer,postsReducer];
 
 const combineReducers = (state, action) => {
   let result = false;

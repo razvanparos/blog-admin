@@ -46,7 +46,7 @@ const RegisterPage = () => {
       <FormRow type='text' placeholder={'Email address'} value={registerState.registerEmail} onChangeFunction={(e)=>changeRegisterState('registerEmail',e.target.value)}/> 
       <FormRow type='password' placeholder={'Password'} value={registerState.registerPassword} onChangeFunction={(e)=>changeRegisterState('registerPassword',e.target.value)}/> 
       <p className='text-red-500'>{registerState.registerError}</p>
-      <ButtonComponent text={'Register'} type='primary'/>
+      <ButtonComponent text={'Register'} type='primary' loader={registerState.loading}/>
       <LinkComponent text={'Already have an account?'} redirectTo={'login'}/>
     </form>
   </main>

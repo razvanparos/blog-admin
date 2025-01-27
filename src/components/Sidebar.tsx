@@ -6,27 +6,36 @@ import SidebarRow from "./SidebarRow.tsx";
 import { IoGrid } from "react-icons/io5";
 import { LuUsers } from "react-icons/lu";
 import { IoMdSettings } from "react-icons/io";
+import ButtonComponent from "./ButtonComponent.tsx";
+import { logoutUser } from "../services/authService.ts";
+import { useNavigate } from "react-router-dom";
 
 const Sidebar = () => {
+  const navigate = useNavigate();
   const { state } = useContext(AppContext);
   const { sidebar } = state;
   const closeSidebar = () => {
     SideBarActions.toggleSidebar(!sidebar);
   };
 
-  const updateWidth=()=>{
-    if(window.innerWidth>=1024){
+  const updateWidth = () => {
+    if (window.innerWidth >= 1024) {
       SideBarActions.toggleSidebar(true);
-      }
     }
+  };
 
-  useEffect(()=>{
+  useEffect(() => {
     updateWidth();
-      window.addEventListener("resize", updateWidth);
+    window.addEventListener("resize", updateWidth);
 
-      return ()=>{window.removeEventListener('resize',updateWidth)}
-  },[])
-  
+    return () => {
+      window.removeEventListener("resize", updateWidth);
+    };
+  }, []);
+
+  const handleLogOut = () => {
+    logoutUser(navigate);
+  };
 
   return (
     <aside
@@ -36,9 +45,28 @@ const Sidebar = () => {
     >
       <div className="bg-slate-100 w-full border-r px-[3%] py-4 lg:px-2 gap-y-2 flex flex-col">
         <UserNameSection />
-        <SidebarRow name='Posts' icon={<IoGrid className="text-2xl"/>} count={6} path={'/'}/>
-        <SidebarRow name='Users' icon={<LuUsers className="text-2xl"/>} count={6} path={'/users'}/>
-        <SidebarRow name='Settings' icon={<IoMdSettings className="text-2xl"/>} count={6} path={'/settings'}/>
+        <SidebarRow
+          name="Posts"
+          icon={<IoGrid className="text-2xl" />}
+          count={state.postsCount}
+          path={"/"}
+        />
+        <SidebarRow
+          name="Users"
+          icon={<LuUsers className="text-2xl" />}
+          count={6}
+          path={"/users"}
+        />
+        <SidebarRow
+          name="Settings"
+          icon={<IoMdSettings className="text-2xl" />}
+          path={"/settings"}
+        />
+        <ButtonComponent
+          text={"Log out"}
+          type={"secondary"}
+          onClickFunction={handleLogOut}
+        />
       </div>
 
       <div

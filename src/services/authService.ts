@@ -38,3 +38,14 @@ export const loginUser = async (loginEmail, loginPassword, rememberMe) => {
     throw "Fields cannot be empty";
   }
 };
+
+export const logoutUser = async (navigate) => {
+  try {
+    await signOut(auth);
+    navigate('/login')
+    localStorage.removeItem('currentUser');
+    sessionStorage.removeItem('currentUser')
+  } catch (error) {
+    console.error("Logout failed:", error);
+  }
+};

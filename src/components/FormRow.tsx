@@ -6,8 +6,8 @@ const FormRow = ({ type, placeholder, value, onChangeFunction }) => {
       placeholder={placeholder}
       type={type}
       className={`
-        ${type==='checkbox'?'w-[30px] cursor-pointer':''}
-        bg-slate-100 border rounded-md p-2 w-full outline-none text-dark
+        bg-slate-100 border rounded-md p-2 outline-none text-dark
+        ${type==='checkbox'?'w-[20px] cursor-pointer':''}
         `}
       value={value}
       onChange={onChangeFunction}

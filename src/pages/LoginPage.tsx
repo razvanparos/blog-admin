@@ -29,8 +29,7 @@ const LoginPage = () => {
     changeLoginState('loading',true)
     try{
       await loginUser(loginState.loginEmail, loginState.loginPassword, loginState.rememberMe);
-      console.log('logged user')
-      changeLoginState('loginError','')
+      navigate('/');
     }catch(error){
       changeLoginState('loginError',error)
     }
@@ -44,11 +43,11 @@ const LoginPage = () => {
         <FormRow type='text' placeholder={'Email address'} value={loginState.loginEmail} onChangeFunction={(e)=>{changeLoginState('loginEmail',e.target.value)}}/> 
         <FormRow type='password' placeholder={'Password'} value={loginState.loginPassword} onChangeFunction={(e)=>{changeLoginState('loginPassword',e.target.value)}}/> 
         <div className='flex gap-x-2'>
-          <FormRow type='checkbox' placeholder={'Remember me'} value={loginState.rememberMe} onChangeFunction={(e)=>{changeLoginState('rememberMe',!loginState.rememberMe)}}/> 
+          <FormRow type='checkbox' placeholder={'Remember me'} value={loginState.rememberMe} onChangeFunction={()=>{changeLoginState('rememberMe',!loginState.rememberMe)}}/> 
           <p>Remember me</p>
         </div>
         <p className='text-red-500'>{loginState.loginError}</p>
-        <ButtonComponent text={'Login'} type='primary'/>
+        <ButtonComponent text={'Login'} type='primary' loader={loginState.loading}/>
         <LinkComponent text={'Create new account'} redirectTo={'register'}/>
       </form>
     </main>
