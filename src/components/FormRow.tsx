@@ -1,17 +1,53 @@
 import React from "react";
+interface FormRowType {
+  type?: string;
+  placeholder?: string;
+  value?: any;
+  onChangeFunction?: Function;
+  labelText?: string;
+  textarea?: boolean;
+}
 
-const FormRow = ({ type, placeholder, value, onChangeFunction }) => {
+const FormRow = ({
+  type,
+  placeholder,
+  value,
+  onChangeFunction,
+  labelText,
+  textarea,
+}: FormRowType) => {
   return (
-    <input
-      placeholder={placeholder}
-      type={type}
-      className={`
-        bg-slate-100 border rounded-md p-2 outline-none text-dark
-        ${type==='checkbox'?'w-[20px] cursor-pointer':''}
+    <>
+      <div className="flex gap-x-2 items-center">
+        {
+          labelText?<div className="bg-darkBlue w-[15px] h-[15px] rounded-full"></div>:''
+        }  
+        <label className="text-lg font-semibold text-darkBlue">
+          {labelText}
+        </label>
+      </div>
+
+      {textarea ? (
+        <textarea
+          placeholder={placeholder}
+          onChange={onChangeFunction}
+          value={value}
+          className="bg-slate-100 border rounded-md p-2 outline-none text-dark w-full min-h-[150px]"
+        >
+        </textarea>
+      ) : (
+        <input
+          placeholder={placeholder}
+          type={type}
+          className={`
+        bg-slate-100 border rounded-md p-2 outline-none text-dark w-full
+        ${type === "checkbox" ? "max-w-[20px] cursor-pointer" : ""}
         `}
-      value={value}
-      onChange={onChangeFunction}
-    />
+          value={value}
+          onChange={onChangeFunction}
+        />
+      )}
+    </>
   );
 };
 

@@ -40,7 +40,7 @@ const Sidebar = () => {
 
   return (
     <aside
-      className={`flex fixed lg:flex-col lg:relative top-[75px] lg:top-0 duration-200 w-full h-[calc(100vh-75px)] lg:h-[calc(100vh-0px)] z-10 ${
+      className={`flex fixed lg:sticky lg:flex-col top-[75px] lg:top-0 duration-200 w-full h-[calc(100vh-75px)] lg:h-[calc(100vh-0px)] z-10 ${
         sidebar ? "left-0" : " translate-x-[-100%] "
       } lg:w-[35%] xl:w-[25%] backdrop-blur-sm`}
     >

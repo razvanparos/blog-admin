@@ -11,6 +11,7 @@ import Users from "./pages/Users.tsx";
 import Settings from "./pages/Settings.tsx";
 import PrivateRoute from "./components/PrivateRoute.tsx";
 import Posts from "./pages/Posts.tsx";
+import IndividualPost from "./pages/IndividualPost.tsx";
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
             <Route index element={<Posts />} />
             <Route path="users" element={<Users />} />
             <Route path="settings" element={<Settings />} />
+            <Route path="post" element={<IndividualPost />} />
           </Route>
           <Route path="login" element={<LoginPage />} />
           <Route path="register" element={<RegisterPage />} />

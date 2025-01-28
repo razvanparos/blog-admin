@@ -26,10 +26,10 @@ export const loginUser = async (loginEmail, loginPassword, rememberMe) => {
     try {
       await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
       if (rememberMe) {
-        localStorage.setItem("currentUser", auth.currentUser.uid);
-        sessionStorage.setItem("currentUser", auth.currentUser.uid);
+        localStorage.setItem("currentUser", auth?.currentUser?.uid || '');
+        sessionStorage.setItem("currentUser", auth?.currentUser?.uid || '');
       } else {
-        sessionStorage.setItem("currentUser", auth.currentUser.uid);
+        sessionStorage.setItem("currentUser", auth?.currentUser?.uid || '');
       }
     } catch (error) {
       throw errorMessages[error.code];

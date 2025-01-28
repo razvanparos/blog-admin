@@ -14,13 +14,13 @@ const Header = ({ desktop }) => {
         `}
     >
       <BlogLogo />
-      <button
+      {/* <button
         onClick={() => {
           console.log(state);
         }}
       >
         click
-      </button>
+      </button> */}
       <MenuToggleButton />
     </header>
   );

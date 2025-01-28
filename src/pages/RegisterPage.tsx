@@ -40,7 +40,7 @@ const RegisterPage = () => {
 
   return (
     <main className="flex justify-center">
-    <form onSubmit={handleRegister} className='flex flex-col p-6 gap-y-4 w-full max-w-[500px]'>
+    <form onSubmit={handleRegister} className='flex flex-col py-6 px-2 gap-y-4 w-full max-w-[500px]'>
       <BlogLogo/>
       <FormRow type='text' placeholder={'Name'} value={registerState.registerName} onChangeFunction={(e)=>changeRegisterState('registerName',e.target.value)}/> 
       <FormRow type='text' placeholder={'Email address'} value={registerState.registerEmail} onChangeFunction={(e)=>changeRegisterState('registerEmail',e.target.value)}/> 

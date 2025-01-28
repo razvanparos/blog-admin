@@ -38,7 +38,7 @@ const LoginPage = () => {
 
   return (
     <main className="flex justify-center">
-      <form onSubmit={handleLogin} className='flex flex-col p-6 gap-y-4 w-full max-w-[500px]'>
+      <form onSubmit={handleLogin} className='flex flex-col py-6 px-2 gap-y-4 w-full max-w-[500px]'>
         <BlogLogo/>
         <FormRow type='text' placeholder={'Email address'} value={loginState.loginEmail} onChangeFunction={(e)=>{changeLoginState('loginEmail',e.target.value)}}/> 
         <FormRow type='password' placeholder={'Password'} value={loginState.loginPassword} onChangeFunction={(e)=>{changeLoginState('loginPassword',e.target.value)}}/> 
