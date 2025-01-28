@@ -1,19 +1,45 @@
-import React,{useEffect} from 'react';
-import getAllPosts from '../services/postsService.ts';
+import React, { useEffect, useState, useContext } from "react";
+import getAllPosts from "../services/postsService.ts";
+import PostsViewer from "../components/PostsViewer.tsx";
+import SearchBarComponent from "../components/SearchBarComponent.tsx";
+import { AppContext } from "../context/AppContext.tsx";
 
-const Posts = ()=>{
+const Posts = () => {
+  const {state}=useContext(AppContext)
+  const {postsSearch}=state
+  const [posts, setPosts] = useState();
+  const [originalPosts, setOriginalPosts] = useState();
+  const [loading, setLoading] = useState(false);
 
-    useEffect(()=>{
-       getAllPosts();
-    },[])
+  const fetchPosts = async () => {
+    setLoading(true);
+    let posts = await getAllPosts();
+    setPosts(posts);
+    setOriginalPosts(posts);
+    setLoading(false);
+  };
 
-    return(
-        <div className="w-full p-4 flex flex-wrap gap-2 overflow-y-scroll max-h-[calc(100vh-75px)]">
-            {/* <SearchbarComponent></SearchbarComponent> */}
-            <p>Posts</p>
-         
-        </div>
-    );
-}
+  useEffect(() => {
+    fetchPosts();
+  }, []);
+
+  useEffect(() => {
+    const filteredPosts = originalPosts?.filter(post => {
+        const normalizedTitle = post?.title.toLowerCase();
+        const normalizedSearchWords = postsSearch.toLowerCase().split(/\s+/);
+    
+        return normalizedSearchWords.every(word => normalizedTitle.includes(word));
+      });
+    
+      setPosts(filteredPosts);
+  }, [postsSearch]);
+
+  return (
+    <div className="w-full p-2 lg:flex lg:flex-col overflow-y-scroll h-[calc(100vh-75px)] md:h-full gap-y-4">
+      <SearchBarComponent />
+      <PostsViewer posts={posts} loading={loading}/>
+    </div>
+  );
+};
 
 export default Posts;

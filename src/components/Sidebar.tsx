@@ -3,12 +3,13 @@ import { AppContext } from "../context/AppContext.tsx";
 import SideBarActions from "../context/actions/sidebar-acions.ts";
 import UserNameSection from "./UserNameSection.tsx";
 import SidebarRow from "./SidebarRow.tsx";
-import { IoGrid } from "react-icons/io5";
-import { LuUsers } from "react-icons/lu";
+import { TfiLayoutGrid2Alt } from "react-icons/tfi";
+import { HiUserGroup } from "react-icons/hi";
 import { IoMdSettings } from "react-icons/io";
 import ButtonComponent from "./ButtonComponent.tsx";
 import { logoutUser } from "../services/authService.ts";
 import { useNavigate } from "react-router-dom";
+import Header from "./Header.tsx";
 
 const Sidebar = () => {
   const navigate = useNavigate();
@@ -39,22 +40,23 @@ const Sidebar = () => {
 
   return (
     <aside
-      className={`flex fixed lg:relative top-[75px] lg:top-0 duration-200 w-full h-[calc(100%-75px)] lg:min-h-[calc(100vh-75px)] z-10 ${
+      className={`flex fixed lg:flex-col lg:relative top-[75px] lg:top-0 duration-200 w-full h-[calc(100vh-75px)] lg:h-[calc(100vh-0px)] z-10 ${
         sidebar ? "left-0" : " translate-x-[-100%] "
       } lg:w-[35%] xl:w-[25%] backdrop-blur-sm`}
     >
-      <div className="bg-slate-100 w-full border-r px-[3%] py-4 lg:px-2 gap-y-2 flex flex-col">
+      <Header desktop={true}/>
+      <div className="bg-slate-100 w-full h-full border-r px-[3%] py-4 lg:px-2 gap-y-2 flex flex-col">
         <UserNameSection />
         <SidebarRow
           name="Posts"
-          icon={<IoGrid className="text-2xl" />}
+          icon={<TfiLayoutGrid2Alt  className="text-2xl" />}
           count={state.postsCount}
           path={"/"}
         />
         <SidebarRow
           name="Users"
-          icon={<LuUsers className="text-2xl" />}
-          count={6}
+          icon={<HiUserGroup  className="text-2xl" />}
+          count={state.usersCount}
           path={"/users"}
         />
         <SidebarRow

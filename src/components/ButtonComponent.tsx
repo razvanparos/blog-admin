@@ -17,9 +17,10 @@ const ButtonComponent = ({
   return (
     <button
       onClick={onClickFunction}
-      className={`${
-        type === "primary" ? "bg-darkBlue text-white" : "border"
-      } p-2 rounded-md flex justify-center items-center min-h-[40px]`}
+      className={`p-2 rounded-md flex justify-center items-center min-h-[40px]
+        ${type === "primary" ? "bg-darkBlue text-white" : "border"} 
+        ${type === "rounded" ? "bg-darkBlue text-white min-h-[30px] w-[30px] h-[30px] rounded-full text-xl" : ""} 
+       `}
     >
       {loader ? <Spinner /> : text}
     </button>
