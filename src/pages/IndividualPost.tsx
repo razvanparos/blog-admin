@@ -32,7 +32,7 @@ const IndividualPost = () => {
           {post ? "Edit post" : "Add new post"}
         </h2>
         <div className="flex gap-x-2 lg:gap-x-4">
-          <ButtonComponent text="Save" type="primary" />
+          <ButtonComponent text="Save" type="save" />
           {post ? (
             <>
             {
@@ -83,8 +83,8 @@ const IndividualPost = () => {
       />
       <h2>Comments</h2>
       <div>
-        {
-            postState.comments?.map((comm)=>{
+        {postState.comments?
+            postState.comments.map((comm)=>{
                 return <div className='border-l-2 border-darkBlue p-4 flex flex-col gap-2 items-start mb-4' key={comm.id}>
                     <div className='flex items-center gap-2'>
                         <PiUserCircleDuotone className='text-4xl min-w-[35px]'/>
@@ -92,7 +92,7 @@ const IndividualPost = () => {
                     </div>
                     <p className='overflow-hidden text-ellipsis'>{comm.commentContent}</p>
                 </div> 
-            })
+            }) :''
         }
       </div>
     </div>

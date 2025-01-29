@@ -40,8 +40,8 @@ const FormRow = ({
           placeholder={placeholder}
           type={type}
           className={`
-        bg-slate-100 border rounded-md p-2 outline-none text-dark w-full
-        ${type === "checkbox" ? "max-w-[20px] cursor-pointer" : ""}
+        bg-slate-100 border rounded-md p-2 outline-none text-dark
+        ${type === "checkbox" ? " bg-red-600 cursor-pointer" : ""}
         `}
           value={value}
           onChange={onChangeFunction}

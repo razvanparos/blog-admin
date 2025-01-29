@@ -40,11 +40,11 @@ const LoginPage = () => {
     <main className="flex justify-center">
       <form onSubmit={handleLogin} className='flex flex-col py-6 px-2 gap-y-4 w-full max-w-[500px]'>
         <BlogLogo/>
-        <FormRow type='text' placeholder={'Email address'} value={loginState.loginEmail} onChangeFunction={(e)=>{changeLoginState('loginEmail',e.target.value)}}/> 
+        <FormRow type='email' placeholder={'Email address'} value={loginState.loginEmail} onChangeFunction={(e)=>{changeLoginState('loginEmail',e.target.value)}}/> 
         <FormRow type='password' placeholder={'Password'} value={loginState.loginPassword} onChangeFunction={(e)=>{changeLoginState('loginPassword',e.target.value)}}/> 
-        <div className='flex gap-x-2'>
-          <FormRow type='checkbox' placeholder={'Remember me'} value={loginState.rememberMe} onChangeFunction={()=>{changeLoginState('rememberMe',!loginState.rememberMe)}}/> 
-          <p>Remember me</p>
+        <div className='flex gap-x-2 items-center'>
+          <FormRow textarea={false} type='checkbox' placeholder={'Remember me'} value={loginState.rememberMe} onChangeFunction={()=>{changeLoginState('rememberMe',!loginState.rememberMe)}}/> 
+          <p className='w-fit'>Remember me</p>
         </div>
         <p className='text-red-500'>{loginState.loginError}</p>
         <ButtonComponent text={'Login'} type='primary' loader={loginState.loading}/>
