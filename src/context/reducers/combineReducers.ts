@@ -1,9 +1,10 @@
+import notificationReducer from "./notificationReducers.ts";
 import postsReducer from "./postsReducers.ts";
 import sidebarReducer from "./sidebar-reducer.ts";
 import usersReducer from "./usersReducers.ts";
 
 
-const allReducers = [sidebarReducer,postsReducer,usersReducer];
+const allReducers = [sidebarReducer,postsReducer,usersReducer,notificationReducer];
 
 const combineReducers = (state, action) => {
   let result = false;

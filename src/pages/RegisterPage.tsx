@@ -5,6 +5,7 @@ import ButtonComponent from "../components/ButtonComponent.tsx";
 import LinkComponent from "../components/LinkComponent.tsx";
 import { useNavigate } from "react-router-dom";
 import { registerUser } from "../services/authService.ts";
+import { addNewUser } from "../services/usersService.ts";
 
 const RegisterPage = () => {
   const navigate = useNavigate();
@@ -29,6 +30,7 @@ const RegisterPage = () => {
     changeRegisterState('loading',true)
     try{
       await registerUser(registerState.registerName, registerState.registerEmail, registerState.registerPassword);
+      await addNewUser(registerState)
       navigate('/login')
     }catch(error){
       changeRegisterState('registerError',error)

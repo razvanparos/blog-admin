@@ -611,12 +611,13 @@ video {
 
 /* width */
 ::-webkit-scrollbar {
-  width: 7px;
+  width: 5px;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #888;
+  background: #232d42;
+  border-radius: 5px;
 }
 
 /* Handle on hover */

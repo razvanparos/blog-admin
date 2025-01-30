@@ -6,7 +6,7 @@ interface SpinnerProps{
 
 const Spinner = ({type}:SpinnerProps)=>{
     return(
-        <div className={type}></div>
+        <div className={`${type}`}></div>
     );
 }
 

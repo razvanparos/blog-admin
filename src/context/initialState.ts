@@ -4,6 +4,9 @@ export interface stateType{
     usersCount:number
     userData:object
     postsSearch:string
+    showNotification: boolean
+    notificationMessage:string
+    notificationType:string
 }
 
 const initialState: stateType = {
@@ -11,7 +14,10 @@ const initialState: stateType = {
     postsCount:0,
     usersCount:0,
     userData:{},
-    postsSearch:''
+    postsSearch:'',
+    showNotification:false,
+    notificationMessage: '',
+    notificationType: ''
 }
 
 export default initialState;

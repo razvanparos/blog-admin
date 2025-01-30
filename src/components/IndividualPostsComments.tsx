@@ -4,7 +4,11 @@ import { PiUserCircleDuotone } from "react-icons/pi";
 function IndividualPostComments({ postState }) {
   return (
     <>
-      <h2>Comments</h2>
+      <div className='flex items-center gap-x-2'>
+        <div className="bg-darkBlue w-[10px] h-[10px] rounded-full"></div>
+        <h2 className='text-lg font-semibold text-darkBlue'>Comments</h2>
+      </div>
+      
       <div>
         {postState.comments
           ? postState.comments.map((comm) => {

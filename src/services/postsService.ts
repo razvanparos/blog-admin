@@ -23,6 +23,7 @@ export const saveNewPost=async(post)=>{
         comments: []
     })
 }
+
 export const updatePost=async(post)=>{
     await dbRequest.updateDb(post.id,"Posts",{
         title:post.title,

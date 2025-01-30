@@ -12,10 +12,12 @@ import Settings from "./pages/Settings.tsx";
 import PrivateRoute from "./components/PrivateRoute.tsx";
 import Posts from "./pages/Posts.tsx";
 import IndividualPost from "./pages/IndividualPost.tsx";
+import Notification from "./components/Notification.tsx";
 
 const App = () => {
   return (
     <AppProvider>
+      <Notification/>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<PrivateRoute><Layout /></PrivateRoute>}>

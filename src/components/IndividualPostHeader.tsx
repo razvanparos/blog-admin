@@ -7,6 +7,7 @@ import {
   updatePostStatus,
 } from "../services/postsService.ts";
 import { useNavigate } from "react-router-dom";
+import NotificationActions from "../context/actions/notification-actions.ts";
 
 function IndividualPostHeader({ post, postState }) {
   const navigate = useNavigate();
@@ -15,14 +16,16 @@ function IndividualPostHeader({ post, postState }) {
   const handleSaveNewPost = (post) => {
     if (postState.title && postState.author && postState.content) {
       saveNewPost(post);
+      NotificationActions.showNotification('Saved!','normal')
       navigate("/");
-    } else alert("Add all post information");
+    } else NotificationActions.showNotification("Complete all post information",'danger');
   };
 
-  const handleUpdatePost = (post) => {
+  const handleUpdatePost = async(post) => {
     if (postState.title && postState.author && postState.content) {
-      updatePost(post);
-    } else alert("Add all post information");
+      await updatePost(post);
+      NotificationActions.showNotification('Updated!','normal')
+    } else NotificationActions.showNotification("Complete all post information please!",'danger');
   };
 
   const handleChangePostStatus = (id: string, status: string) => {
@@ -34,6 +37,7 @@ function IndividualPostHeader({ post, postState }) {
 
   const handleDeletePost = (id: string) => {
     removePost(id);
+    NotificationActions.showNotification('Deleted!','warning')
     navigate("/");
   };
 

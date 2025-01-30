@@ -44,7 +44,7 @@ const Posts = () => {
   }, [postsSearch]);
 
   return (
-    <div className="w-full p-2 lg:flex lg:flex-col overflow-y-scroll h-[calc(100vh-75px)] md:h-full gap-y-4">
+    <div className="w-full p-2 lg:p-4 lg:flex lg:flex-col overflow-y-scroll h-[calc(100vh-75px)] md:h-full gap-y-4">
       <SearchBarComponent />
       <PostsViewer posts={posts} loading={loading} />
     </div>

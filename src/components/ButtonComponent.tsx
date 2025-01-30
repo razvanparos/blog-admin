@@ -17,7 +17,7 @@ const ButtonComponent = ({
   return (
     <button
       onClick={onClickFunction}
-      className={`py-2 px-2 md:px-4 flex justify-center items-center 
+      className={`py-2 px-2 md:px-4 flex justify-center items-center
         ${type === "primary" ? "bg-darkBlue text-white rounded-md min-h-[40px]" : ""} 
         ${type === "secondary" ? "border rounded-md min-h-[40px]" : ""} 
         ${type === "rounded" ? "bg-darkBlue text-white w-[30px] h-[30px] rounded-full text-xl" : ""} 
