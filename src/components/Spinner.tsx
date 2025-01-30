@@ -1,8 +1,12 @@
 import React from 'react';
 
-const Spinner = ()=>{
+interface SpinnerProps{
+    type:string
+}
+
+const Spinner = ({type}:SpinnerProps)=>{
     return(
-        <div className="loader"></div>
+        <div className={type}></div>
     );
 }
 

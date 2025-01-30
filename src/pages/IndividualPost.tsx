@@ -1,20 +1,23 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import FormRow from "../components/FormRow.tsx";
-import ButtonComponent from "../components/ButtonComponent.tsx";
-import { PiUserCircleDuotone } from "react-icons/pi";
+import IndividualPostHeader from "../components/IndividualPostHeader.tsx";
+import IndividualPostComments from "../components/IndividualPostsComments.tsx";
+import { months } from "../common/utils.ts";
 
 const IndividualPost = () => {
   const location = useLocation();
   const { state } = location;
   const { post } = state || "";
-
+  
   const initialPostState = {
+    id: post?.id || "",
     title: post?.title || "",
     author: post?.author || "",
     content: post?.content || "",
-    date: post?.date || "",
-    comments:post?.comments || ""
+    date: post?.date || `${new Date().getFullYear()}-${months[new Date().getMonth()]}-${new Date().getDate()}`,
+    comments:post?.comments || "",
+    status: post?.status || ""
   };
   const [postState, setPostState] = useState(initialPostState);
 
@@ -27,25 +30,7 @@ const IndividualPost = () => {
 
   return (
     <div className="w-full p-4 flex flex-col gap-y-4 lg:border lg:m-6 rounded-lg">
-      <section className="flex justify-between items-center mb-6">
-        <h2 className="text-darkBlue font-semibold text-2xl">
-          {post ? "Edit post" : "Add new post"}
-        </h2>
-        <div className="flex gap-x-2 lg:gap-x-4">
-          <ButtonComponent text="Save" type="save" />
-          {post ? (
-            <>
-            {
-                post?.status=='Published'?<ButtonComponent text="Hide" type="warning" />:<ButtonComponent text="Publish" type="normal" />
-            }
-              <ButtonComponent text="Delete" type="danger" />
-            </>
-          ) : (
-            ""
-          )}
-        </div>
-      </section>
-
+      <IndividualPostHeader post={post} postState={postState}/>
       <FormRow
         labelText="Title"
         type={"text"}
@@ -81,20 +66,10 @@ const IndividualPost = () => {
           changePostState("content", e.target.value);
         }}
       />
-      <h2>Comments</h2>
-      <div>
-        {postState.comments?
-            postState.comments.map((comm)=>{
-                return <div className='border-l-2 border-darkBlue p-4 flex flex-col gap-2 items-start mb-4' key={comm.id}>
-                    <div className='flex items-center gap-2'>
-                        <PiUserCircleDuotone className='text-4xl min-w-[35px]'/>
-                        <p className='text-lighGray text-sm'>{comm.commentedBy}</p>
-                    </div>
-                    <p className='overflow-hidden text-ellipsis'>{comm.commentContent}</p>
-                </div> 
-            }) :''
-        }
-      </div>
+      {
+        postState.comments.length>0?<IndividualPostComments postState={postState}/>:''
+      }
+      
     </div>
   );
 };

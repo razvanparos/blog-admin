@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import getAllPosts from "../services/postsService.ts";
+import {getAllPosts} from "../services/postsService.ts";
 import PostsViewer from "../components/PostsViewer.tsx";
 import SearchBarComponent from "../components/SearchBarComponent.tsx";
 import { AppContext } from "../context/AppContext.tsx";

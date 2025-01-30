@@ -27,7 +27,7 @@ const ButtonComponent = ({
         ${type === "save" ? "bg-blue-300 text-darkBlue rounded-md border border-darkBlue text-xs md:text-lg" : ""} 
        `}
     >
-      {loader ? <Spinner /> : text}
+      {loader ? <Spinner type='loader'/> : text}
     </button>
   );
 };

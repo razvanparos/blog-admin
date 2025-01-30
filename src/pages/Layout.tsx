@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import Header from "../components/Header.tsx";
 import { Outlet } from "react-router-dom";
 import Sidebar from "../components/Sidebar.tsx";
-import getAllPosts from "../services/postsService.ts";
+import {getAllPosts} from "../services/postsService.ts";
 import PostsActions from "../context/actions/posts-actions.ts";
 import {getAllUsers, getCurrentUserData} from "../services/usersService.ts";
 import UsersActions from "../context/actions/users-actions.ts";

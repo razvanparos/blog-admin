@@ -1,6 +1,7 @@
 import { collection, query, getDocs, setDoc} from "firebase/firestore";
 import { db } from "../firebase-config.ts";
 import { doc, updateDoc, deleteDoc  } from "firebase/firestore"; 
+import { TbAccessPoint } from "react-icons/tb";
 
 class DbRequest{
     async queryDb(queryParams){
@@ -28,6 +29,29 @@ class DbRequest{
           return filterdData1
         }
     }
+
+    async setDb(id:string,table:string,setParams:object){
+      try {
+        await setDoc(doc(db, table, id), setParams);
+      } catch (error) {
+        throw error;
+      }
+    }
+
+    async updateDb(id:string,table:string,updateParams:object){
+      try{
+        await updateDoc(doc(db,table,id), updateParams);
+      }catch(error){
+        console.log(error)
+      }
+      
+    }
+
+    async removeFromDb(id,table){
+      await deleteDoc(doc(db,table,id));
+    }
+  
+
 }
 
 export default new DbRequest();

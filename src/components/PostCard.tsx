@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { formatDate } from "../common/utils.ts";
 
 interface PostCardTypes {
   key?: string;
@@ -12,10 +13,6 @@ const PostCard = ({ post }: PostCardTypes) => {
     navigate(`/post`,{state:{post}})
   }
 
-  const formatDate = (date) => {
-    let splitted = date.split("-");
-    return splitted.reverse().join("/");
-  };
 
   return (
     <article onClick={redirectToIndividualPost} className="cursor-pointer p-4 h-fit border-b lg:border-b grid grid-cols-2 gap-2 lg:grid-cols-4">
