@@ -1,12 +1,10 @@
-import React, { useEffect, useState, useContext } from "react";
-import {getAllPosts} from "../services/postsService.ts";
+import React, { useEffect, useState,  } from "react";
+import { getAllPosts } from "../services/postsService.ts";
 import PostsViewer from "../components/PostsViewer.tsx";
 import SearchBarComponent from "../components/SearchBarComponent.tsx";
-import { AppContext } from "../context/AppContext.tsx";
 
 const Posts = () => {
-  const { state } = useContext(AppContext);
-  const { postsSearch } = state;
+  const [postsSearch, setPostsSearch]=useState('');
   const [posts, setPosts] = useState();
   const [originalPosts, setOriginalPosts] = useState();
   const [loading, setLoading] = useState(false);
@@ -45,7 +43,7 @@ const Posts = () => {
 
   return (
     <div className="w-full p-2 lg:p-4 lg:flex lg:flex-col overflow-y-scroll h-[calc(100vh-75px)] md:h-full gap-y-4">
-      <SearchBarComponent />
+      <SearchBarComponent search={postsSearch} searchFunction={setPostsSearch}/>
       <PostsViewer posts={posts} loading={loading} />
     </div>
   );

@@ -1,36 +1,22 @@
-import React from "react";
-import PostCard from "../components/PostCard.tsx";
-import ButtonComponent from "./ButtonComponent.tsx";
-import { useNavigate } from "react-router-dom";
+import * as React from "react";
 import Spinner from "./Spinner.tsx";
+import UserCard from "./UserCard.tsx";
 import ViewerHeader from "./ViewerHeader.tsx";
 
-const PostsViewer = ({ posts, loading }) => {
-  const navigate = useNavigate();
+function UserViewer({ users, loading }) {
   return (
     <section className="lg:border rounded-xl w-full">
-      <div className="flex items-center">
-        <h2 className="text-2xl p-4">Posts</h2>
-        <ButtonComponent
-          text={"+"}
-          type={"rounded"}
-          onClickFunction={() => {
-            navigate(`/post`, {});
-          }}
-        />
-      </div>
-
-      <ViewerHeader headerTitles={['Title','Author','Date','Status']}/>
-  
-      {posts?.length > 0 ? (
+      <h2 className="text-2xl p-4">Users</h2>
+      <ViewerHeader headerTitles={['Name','Email','Joined','Role']}/>
+      {users?.length > 0 ? (
         <div>
           {loading ? (
             <div className="p-4 flex items-center justify-center">
               <Spinner type="black-loader" />
             </div>
           ) : (
-            posts?.map((p) => {
-              return <PostCard key={p.id} post={p} />;
+            users?.map((user) => {
+              return <UserCard key={user.id} user={user}/>
             })
           )}
         </div>
@@ -49,6 +35,6 @@ const PostsViewer = ({ posts, loading }) => {
       )}
     </section>
   );
-};
+}
 
-export default PostsViewer;
+export default UserViewer;

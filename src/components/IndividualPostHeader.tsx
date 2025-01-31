@@ -48,24 +48,14 @@ function IndividualPostHeader({ post, postState }) {
       </h2>
       <div className="flex gap-x-2 lg:gap-x-4">
         {post ? (
-          <ButtonComponent
-            text="Update"
-            type="save"
-            onClickFunction={() => {
-              handleUpdatePost(postState);
-            }}
-          />
-        ) : (
-          <ButtonComponent
-            text="Save"
-            type="save"
-            onClickFunction={() => {
-              handleSaveNewPost(postState);
-            }}
-          />
-        )}
-        {post ? (
           <>
+            <ButtonComponent
+              text="Update"
+              type="save"
+              onClickFunction={() => {
+                handleUpdatePost(postState);
+              }}
+            />
             {buttonState == "Published" ? (
               <ButtonComponent
                 text="Hide"
@@ -91,8 +81,15 @@ function IndividualPostHeader({ post, postState }) {
               }}
             />
           </>
+          
         ) : (
-          ""
+          <ButtonComponent
+            text="Save"
+            type="save"
+            onClickFunction={() => {
+              handleSaveNewPost(postState);
+            }}
+          />
         )}
       </div>
     </section>
