@@ -1,4 +1,4 @@
-import { orderBy } from "firebase/firestore";
+import { orderBy, where } from "firebase/firestore";
 import dbRequest from "./dbRequest.ts"
 
 export const getAllPosts=async()=>{
@@ -6,6 +6,14 @@ export const getAllPosts=async()=>{
         table:'Posts',
         orderBy:orderBy("date", "desc"),
         whereCondition:''
+    })
+   return response;
+}
+export const getCurrentUserPosts=async()=>{
+    let response = await dbRequest.queryDb({
+        table:'Posts',
+        orderBy:orderBy("date", "desc"),
+        whereCondition:[where('authorId','==',sessionStorage.getItem('currentUser'))]
     })
    return response;
 }

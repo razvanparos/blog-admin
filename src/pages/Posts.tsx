@@ -1,4 +1,4 @@
-import React, { useEffect, useState,  } from "react";
+import React, { useEffect, useState } from "react";
 import { getAllPosts } from "../services/postsService.ts";
 import PostsViewer from "../components/PostsViewer.tsx";
 import SearchBarComponent from "../components/SearchBarComponent.tsx";
@@ -8,6 +8,7 @@ const Posts = () => {
   const [posts, setPosts] = useState();
   const [originalPosts, setOriginalPosts] = useState();
   const [loading, setLoading] = useState(false);
+  const[filter,setFilter]=useState('All');
 
   const fetchPosts = async () => {
     setLoading(true);
@@ -31,20 +32,34 @@ const Posts = () => {
             normalizedTitle.includes(word)
           );
         });
-        setPosts(filteredPosts);
+         
+        if(filter==='All'){
+          setPosts(filteredPosts);
+        }else{
+          let postsFilteredByStatus =  filteredPosts?.filter(post=>post.status===filter)
+          setPosts(postsFilteredByStatus)
+        }
+       
       }, 300);
       return () => {
         clearTimeout(handler);
       };
     } else {
-      setPosts(originalPosts);
+      if(filter==='All'){
+        setPosts(originalPosts);
+      }else{
+        let postsFilteredByStatus =  originalPosts?.filter(post=>post.status===filter)
+        setPosts(postsFilteredByStatus)
+      }
+      
     }
-  }, [postsSearch]);
+  }, [postsSearch,filter]);
+
 
   return (
     <div className="w-full p-2 lg:p-4 lg:flex lg:flex-col overflow-y-scroll h-[calc(100vh-75px)] md:h-full gap-y-4">
       <SearchBarComponent search={postsSearch} searchFunction={setPostsSearch}/>
-      <PostsViewer posts={posts} loading={loading} />
+      <PostsViewer posts={posts} loading={loading} filter={filter} setFilter={setFilter}/>
     </div>
   );
 };

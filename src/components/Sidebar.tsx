@@ -49,19 +49,19 @@ const Sidebar = () => {
         <UserNameSection />
         <SidebarRow
           name="Posts"
-          icon={<TfiLayoutGrid2Alt  className="text-2xl" />}
+          icon={<TfiLayoutGrid2Alt  className="text-2xl text-darkBlue" />}
           count={state.postsCount}
           path={"/"}
         />
         <SidebarRow
           name="Users"
-          icon={<HiUserGroup  className="text-2xl" />}
+          icon={<HiUserGroup  className="text-2xl text-darkBlue" />}
           count={state.usersCount}
           path={"/users"}
         />
         <SidebarRow
           name="Settings"
-          icon={<IoMdSettings className="text-2xl" />}
+          icon={<IoMdSettings className="text-2xl text-darkBlue" />}
           path={"/settings"}
         />
         <ButtonComponent

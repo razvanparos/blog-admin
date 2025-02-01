@@ -1,21 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import FormRow from "../components/FormRow.tsx";
 import IndividualPostHeader from "../components/IndividualPostHeader.tsx";
 import IndividualPostComments from "../components/IndividualPostsComments.tsx";
 import { months } from "../common/utils.ts";
+import { AppContext } from "../context/AppContext.tsx";
 
 const IndividualPost = () => {
   const location = useLocation();
   const { state } = location;
+  const  {userData}  = useContext(AppContext).state;
   const { post } = state || "";
   
   const initialPostState = {
     id: post?.id || "",
     title: post?.title || "",
-    author: post?.author || "",
+    author: post?.author || userData[0]?.name,
     content: post?.content || "",
-    date: post?.date || `${new Date().getFullYear()}-${months[new Date().getMonth()]}-${new Date().getDate()}`,
+    date: post?.date || `${new Date().getFullYear()}-${months[new Date().getMonth()]}-${new Date().getDate()<10?'0'+new Date().getDate():new Date().getDate()}`,
     comments:post?.comments || "",
     status: post?.status || ""
   };
@@ -27,6 +29,12 @@ const IndividualPost = () => {
       [fieldname]: value,
     }));
   };
+
+  useEffect(() => {
+    if (!post?.author && userData[0]?.name) {
+      changePostState('author', userData[0]?.name)
+    }
+  }, [userData]);
 
   return (
     <div className="w-full p-4 flex flex-col gap-y-4 lg:border lg:m-6 rounded-lg">

@@ -37,6 +37,7 @@ const FormRow = ({
         </textarea>
       ) : (
         <input
+          
           placeholder={placeholder}
           type={type}
           className={`

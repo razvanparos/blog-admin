@@ -21,7 +21,7 @@ const SidebarRow = ({name,icon,count,path}:SidebarRowPropsType)=>{
             {icon}
             <p className='w-full '>{name}</p>
             {
-                count? count>0?<span className='text-lighGray font-semibold'>{count}</span>:'':''
+                count? count>0?<span className='text-lighGray'>{count}</span>:'':''
             }
 
         </Link>

@@ -1,7 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { formatDate } from "../common/utils.ts";
-
 interface PostCardTypes {
   key?: string;
   post: any;
