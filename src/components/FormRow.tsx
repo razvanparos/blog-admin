@@ -6,6 +6,7 @@ interface FormRowType {
   onChangeFunction?: Function;
   labelText?: string;
   textarea?: boolean;
+  disabled?:boolean
 }
 
 const FormRow = ({
@@ -15,6 +16,7 @@ const FormRow = ({
   onChangeFunction,
   labelText,
   textarea,
+  disabled
 }: FormRowType) => {
   return (
     <>
@@ -37,12 +39,12 @@ const FormRow = ({
         </textarea>
       ) : (
         <input
-          
+          disabled={disabled}
           placeholder={placeholder}
           type={type}
           className={`
         bg-slate-100 border rounded-md p-2 outline-none text-dark
-        ${type === "checkbox" ? " bg-red-600 cursor-pointer" : ""}
+        ${type === "checkbox" ? " bg-red-600 cursor-pointer" : "w-full"}
         `}
           value={value}
           onChange={onChangeFunction}

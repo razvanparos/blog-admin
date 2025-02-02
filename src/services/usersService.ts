@@ -28,3 +28,8 @@ export const updateUserRole=async(id,role)=>{
         role:role
     })
 }
+export const updateUserName=async(id,name)=>{
+    await dbRequest.updateDb(id,'Users',{
+        name:name
+    })
+}

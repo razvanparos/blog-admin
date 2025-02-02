@@ -49,6 +49,7 @@ const IndividualPost = () => {
         }}
       />
       <FormRow
+        disabled={userData[0]?.role=='Contributor'}
         labelText="Author"
         type={"text"}
         placeholder={"Post author"}

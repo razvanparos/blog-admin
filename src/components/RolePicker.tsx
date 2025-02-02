@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import {
   getCurrentUserData,
@@ -6,8 +6,11 @@ import {
 } from "../services/usersService.ts";
 import NotificationActions from "../context/actions/notification-actions.ts";
 import UsersActions from "../context/actions/users-actions.ts";
+import { AppContext } from "../context/AppContext.tsx";
 
 function RolePicker({ user }) {
+  const {state} = useContext(AppContext)
+  const {userData} = state
   const [showRoleDropdown, setShowRoleDropdown] = useState(false);
   const [role, setRole] = useState(user.role);
 
@@ -24,14 +27,15 @@ function RolePicker({ user }) {
       onClick={() => {
         setShowRoleDropdown(!showRoleDropdown);
       }}
-      className="
-      flex items-center justify-center rounded-lg lg:justify-between gap-x-2 cursor-pointer relative select-none bg-slate-100
-       max-w-[170px] w-full p-2 border
-    "
+      className={`
+        ${userData[0].role!='Administrator'?'pointer-events-none ':'border bg-slate-100'}
+      flex items-center justify-center rounded-lg lg:justify-between gap-x-2 cursor-pointer relative select-none 
+       max-w-[170px] w-full p-2 
+    `}
     >
       <p className={"text-center lg:text-start"}>{role}</p>
       <MdKeyboardArrowDown
-        className={`${showRoleDropdown ? "rotate-180" : ""} text-lg`}
+        className={`${showRoleDropdown ? "rotate-180" : ""} text-lg ${userData[0].role!='Administrator'?'hidden':''}`}
       />
       <div
         className={`${

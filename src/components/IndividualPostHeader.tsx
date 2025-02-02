@@ -57,7 +57,6 @@ function IndividualPostHeader({ post, postState }) {
       <h2 className="text-darkBlue font-semibold text-2xl">
         {post ? "Edit post" : "Add new post"}
       </h2>
-      {userData[0]?.role === "Administrator" ? (
         <div className="flex gap-x-2 lg:gap-x-4">
           {post ? (
             <>
@@ -103,19 +102,7 @@ function IndividualPostHeader({ post, postState }) {
             />
           )}
         </div>
-      ) : (
-        <div>
-           {
-          post?'': <ButtonComponent
-              text="Save"
-              type="save"
-              onClickFunction={() => {
-                handleSaveNewPost(postState);
-              }}
-            /> 
-        }
-        </div>
-      )}
+     
     </section>
   );
 }
