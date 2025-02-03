@@ -2,6 +2,7 @@ import { where } from "firebase/firestore";
 import dbRequest from "./dbRequest.ts"
 import { auth } from "../firebase-config.ts";
 import { months } from "../common/utils.ts";
+import { updatePassword } from "firebase/auth";
 
 export const getAllUsers=async()=>{
     let response = await dbRequest.queryDb({table:'Users',whereCondition:''})
@@ -32,4 +33,8 @@ export const updateUserName=async(id,name)=>{
     await dbRequest.updateDb(id,'Users',{
         name:name
     })
+}
+export const updateUserPassword=async(password)=>{
+    const user:any = auth.currentUser;
+    updatePassword(user, password)
 }
