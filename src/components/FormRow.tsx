@@ -1,4 +1,5 @@
 import React from "react";
+import LabelComponent from "./LabelComponent.tsx";
 interface FormRowType {
   type?: string;
   placeholder?: string;
@@ -6,7 +7,7 @@ interface FormRowType {
   onChangeFunction?: Function;
   labelText?: string;
   textarea?: boolean;
-  disabled?:boolean
+  disabled?: boolean;
 }
 
 const FormRow = ({
@@ -16,18 +17,11 @@ const FormRow = ({
   onChangeFunction,
   labelText,
   textarea,
-  disabled
+  disabled,
 }: FormRowType) => {
   return (
     <>
-      <div className="flex gap-x-2 items-center">
-        {
-          labelText?<div className="bg-darkBlue w-[10px] h-[10px] rounded-full"></div>:''
-        }  
-        <label className="text-lg font-semibold text-darkBlue">
-          {labelText}
-        </label>
-      </div>
+      <LabelComponent labelText={labelText} />
 
       {textarea ? (
         <textarea
@@ -35,8 +29,7 @@ const FormRow = ({
           onChange={onChangeFunction}
           value={value}
           className="bg-slate-100 border rounded-md p-2 outline-none text-dark w-full min-h-[150px]"
-        >
-        </textarea>
+        ></textarea>
       ) : (
         <input
           disabled={disabled}

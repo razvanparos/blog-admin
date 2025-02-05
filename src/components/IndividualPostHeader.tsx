@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import ButtonComponent from "../components/ButtonComponent.tsx";
 import {
   removePost,
@@ -8,13 +8,10 @@ import {
 } from "../services/postsService.ts";
 import { useNavigate } from "react-router-dom";
 import NotificationActions from "../context/actions/notification-actions.ts";
-import { AppContext } from "../context/AppContext.tsx";
 
-function IndividualPostHeader({ post, postState }) {
+function IndividualPostHeader({ postState }) {
   const navigate = useNavigate();
   const [buttonState, setButtonState] = useState(postState.status);
-  const { state } = useContext(AppContext);
-  const { userData } = state;
 
   const handleSaveNewPost = (post) => {
     if (postState.title && postState.author && postState.content) {
@@ -55,10 +52,10 @@ function IndividualPostHeader({ post, postState }) {
   return (
     <section className="flex justify-between items-center mb-6">
       <h2 className="text-darkBlue font-semibold text-2xl">
-        {post ? "Edit post" : "Add new post"}
+        {postState.id ? "Edit post" : "Add new post"}
       </h2>
         <div className="flex gap-x-2 lg:gap-x-4">
-          {post ? (
+          {postState.id ? (
             <>
               <ButtonComponent
                 text="Update"

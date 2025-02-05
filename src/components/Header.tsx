@@ -1,10 +1,8 @@
-import React, { useContext } from "react";
-import { AppContext } from "../context/AppContext.tsx";
+import React from "react";
 import MenuToggleButton from "./MenuToggleButton.tsx";
 import BlogLogo from "./Blog-logo.tsx";
 
 const Header = ({ desktop }) => {
-  const { state }: any = useContext(AppContext);
 
   return (
     <header
@@ -14,13 +12,6 @@ const Header = ({ desktop }) => {
         `}
     >
       <BlogLogo />
-      {/* <button
-        onClick={() => {
-          console.log(state);
-        }}
-      >
-        click
-      </button> */}
       <MenuToggleButton />
     </header>
   );

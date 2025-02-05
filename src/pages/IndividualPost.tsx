@@ -9,17 +9,23 @@ import { AppContext } from "../context/AppContext.tsx";
 const IndividualPost = () => {
   const location = useLocation();
   const { state } = location;
-  const  {userData}  = useContext(AppContext).state;
+  const { userData } = useContext(AppContext).state;
   const { post } = state || "";
-  
+
   const initialPostState = {
     id: post?.id || "",
     title: post?.title || "",
-    author: post?.author || userData[0]?.name,
+    author: post?.author || userData[0]?.name || '',
     content: post?.content || "",
-    date: post?.date || `${new Date().getFullYear()}-${months[new Date().getMonth()]}-${new Date().getDate()<10?'0'+new Date().getDate():new Date().getDate()}`,
-    comments:post?.comments || "",
-    status: post?.status || ""
+    date:
+      post?.date ||
+      `${new Date().getFullYear()}-${months[new Date().getMonth()]}-${
+        new Date().getDate() < 10
+          ? "0" + new Date().getDate()
+          : new Date().getDate()
+      }`,
+    comments: post?.comments || "",
+    status: post?.status || "",
   };
   const [postState, setPostState] = useState(initialPostState);
 
@@ -32,13 +38,13 @@ const IndividualPost = () => {
 
   useEffect(() => {
     if (!post?.author && userData[0]?.name) {
-      changePostState('author', userData[0]?.name)
+      changePostState("author", userData[0]?.name);
     }
   }, [userData]);
 
   return (
     <div className="w-full p-4 flex flex-col gap-y-4 lg:border lg:m-6 rounded-lg">
-      <IndividualPostHeader post={post} postState={postState}/>
+      <IndividualPostHeader postState={postState} />
       <FormRow
         labelText="Title"
         type={"text"}
@@ -49,7 +55,7 @@ const IndividualPost = () => {
         }}
       />
       <FormRow
-        disabled={userData[0]?.role=='Contributor'}
+        disabled={userData[0]?.role == "Contributor"}
         labelText="Author"
         type={"text"}
         placeholder={"Post author"}
@@ -75,10 +81,11 @@ const IndividualPost = () => {
           changePostState("content", e.target.value);
         }}
       />
-      {
-        postState.comments.length>0?<IndividualPostComments postState={postState}/>:''
-      }
-      
+      {postState.comments.length > 0 ? (
+        <IndividualPostComments postState={postState} />
+      ) : (
+        ""
+      )}
     </div>
   );
 };

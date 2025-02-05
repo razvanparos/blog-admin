@@ -40,6 +40,11 @@ export const updatePost=async(post)=>{
         date: post.date,
     });
 }
+export const updatePostComments=async(id,comments)=>{
+    await dbRequest.updateDb(id,"Posts",{
+        comments: comments
+    });
+}
 
 export const updatePostStatus=async(id,status)=>{
     await dbRequest.updateDb(id,"Posts",{

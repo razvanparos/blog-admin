@@ -1,34 +1,56 @@
-import React from "react";
-import { PiUserCircleDuotone } from "react-icons/pi";
+import React, { useState } from "react";
+import LabelComponent from "./LabelComponent.tsx";
+import CommentModal from "./CommentModal.tsx";
+import { updatePostComments } from "../services/postsService.ts";
+import CommentCard from "./CommentCard.tsx";
+import NotificationActions from "../context/actions/notification-actions.ts";
+import { useNavigate } from "react-router-dom";
 
 function IndividualPostComments({ postState }) {
+  const navigate = useNavigate();
+  const [commentModal, setCommentModal] = useState("");
+  const [showCommentModal, setShowCommentModal] = useState(false);
+
+  const handleOpenModal = (comm) => {
+    setShowCommentModal(true);
+    setCommentModal(comm);
+  };
+
+  const handleDeleteComment = (id) => {
+    let filteredComments = postState.comments.filter((comm) => comm.id != id);
+    postState.comments = filteredComments;
+    updatePostComments(postState.id, filteredComments);
+    setShowCommentModal(false);
+    navigate(`/post`, { state: { postState } });
+    NotificationActions.showNotification("Comment deleted", "warning");
+  };
+
   return (
     <>
-      <div className='flex items-center gap-x-2'>
-        <div className="bg-darkBlue w-[10px] h-[10px] rounded-full"></div>
-        <h2 className='text-lg font-semibold text-darkBlue'>Comments</h2>
-      </div>
-      
+      <LabelComponent labelText={"Comments"} />
       <div>
         {postState.comments
           ? postState.comments.map((comm) => {
               return (
-                <div
-                  className="border-l-2 border-darkBlue p-4 flex flex-col gap-2 items-start mb-4"
+                <CommentCard
                   key={comm.id}
-                >
-                  <div className="flex items-center gap-2">
-                    <PiUserCircleDuotone className="text-4xl min-w-[35px]" />
-                    <p className="text-lighGray text-sm">{comm.commentedBy}</p>
-                  </div>
-                  <p className="overflow-hidden text-ellipsis">
-                    {comm.commentContent}
-                  </p>
-                </div>
+                  comm={comm}
+                  handleOpenModal={handleOpenModal}
+                />
               );
             })
           : ""}
       </div>
+
+      {showCommentModal ? (
+        <CommentModal
+          handleDeleteComment={handleDeleteComment}
+          comment={commentModal}
+          setShowCommentModal={setShowCommentModal}
+        />
+      ) : (
+        ""
+      )}
     </>
   );
 }

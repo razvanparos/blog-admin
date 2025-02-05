@@ -1,6 +1,5 @@
 import React from "react";
 import { formatDate } from "../common/utils.ts";
-
 import RolePicker from "./RolePicker.tsx";
 
 interface UserCardTypes {
