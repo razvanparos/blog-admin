@@ -3,6 +3,7 @@ import { getAllPosts } from "../services/postsService.ts";
 import PostsViewer from "../components/PostsViewer.tsx";
 import SearchBarComponent from "../components/SearchBarComponent.tsx";
 import { AppContext } from "../context/AppContext.tsx";
+import PostsActions from "../context/actions/posts-actions.ts";
 
 export interface PostType{
   author:string
@@ -27,15 +28,17 @@ const Posts = () => {
     if (userData.length > 0) {
       setLoading(true);
       let posts = await getAllPosts() as PostType[];
-      if (userData[0].role == "Contributor") {
+      if (userData[0].role === "Contributor") {
         let currentUserPosts = posts.filter(
           (p) => p.authorId === sessionStorage.getItem("currentUser")
         );
         setPosts(currentUserPosts);
         setOriginalPosts(currentUserPosts);
+        PostsActions.setPostsCount(currentUserPosts.length);
       } else {
         setPosts(posts);
         setOriginalPosts(posts);
+        PostsActions.setPostsCount(posts.length);
       }
 
       setLoading(false);

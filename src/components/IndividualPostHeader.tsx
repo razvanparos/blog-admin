@@ -64,7 +64,7 @@ function IndividualPostHeader({ postState }) {
                   handleUpdatePost(postState);
                 }}
               />
-              {buttonState == "Published" ? (
+              {buttonState === "Published" ? (
                 <ButtonComponent
                   text="Hide"
                   type="warning"

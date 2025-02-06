@@ -40,11 +40,13 @@ const Sidebar = () => {
 
   return (
     <aside
-      className={`flex fixed lg:sticky lg:flex-col top-[75px] lg:top-0 duration-200 w-full h-[calc(100vh-75px)] lg:h-[calc(100vh-0px)] z-30 ${
+      className={`flex fixed lg:sticky flex-col top-[75px] lg:top-0 duration-200 w-full h-[calc(100vh-75px)] lg:h-[calc(100vh-0px)] z-30 ${
         sidebar ? "left-0" : " translate-x-[-100%] "
       } lg:w-[35%] xl:w-[25%] backdrop-blur-sm`}
     >
-      <Header desktop={true}/>
+      <div className='hidden lg:flex'>
+        <Header />
+      </div>
       <div className="bg-slate-100 w-full h-full border-r px-[3%] py-4 lg:px-2 gap-y-2 flex flex-col">
         <UserNameSection />
         <SidebarRow

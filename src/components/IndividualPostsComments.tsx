@@ -17,7 +17,7 @@ function IndividualPostComments({ postState }) {
   };
 
   const handleDeleteComment = (id) => {
-    let filteredComments = postState.comments.filter((comm) => comm.id != id);
+    let filteredComments = postState.comments.filter((comm) => comm.id !== id);
     postState.comments = filteredComments;
     updatePostComments(postState.id, filteredComments);
     setShowCommentModal(false);

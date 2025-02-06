@@ -22,10 +22,10 @@ const PostsViewer = ({ posts, loading, filter, setFilter }) => {
           />
         </div>
         <div className="flex justify-between gap-x-4 text-sm lg:text-xl">
-          {["All", "Published", "Hidden"].map((filterText, i) => {
+          {["All", "Published", "Hidden"].map((filterText) => {
             return (
               <span
-                key={i}
+                key={filterText}
                 onClick={(e) => {
                   setFilter(e.target.textContent);
                 }}

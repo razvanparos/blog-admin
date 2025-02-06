@@ -51,7 +51,7 @@ const Settings = () => {
   };
 
   return (
-    <div className="w-full p-2 lg:p-4 lg:flex lg:flex-col overflow-y-scroll h-[calc(100vh-75px)] md:h-full gap-y-4 max-w-[600px]">
+    <div className="w-full p-2 lg:p-4 flex flex-col overflow-y-scroll h-[calc(100vh-75px)] md:h-full gap-y-4 lg:max-w-[600px]">
       <h2 className="text-lg md:text-2xl ">Settings</h2>
       <FormRow
         type={"text"}

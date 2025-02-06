@@ -15,7 +15,7 @@ function RolePicker({ user }) {
   const [role, setRole] = useState(user.role);
 
   const handleChangeRole = async (roleText: string) => {
-    if(roleText==role) return
+    if(roleText===role) return
     setRole(roleText);
     await updateUserRole(user.id, roleText);
     let userData = await getCurrentUserData();
@@ -35,16 +35,16 @@ function RolePicker({ user }) {
     >
       <p className={"text-center lg:text-start"}>{role}</p>
       <MdKeyboardArrowDown
-        className={`${showRoleDropdown ? "rotate-180" : ""} text-lg ${userData[0].role!='Administrator'?'hidden':''}`}
+        className={`duration-300 ${showRoleDropdown ? "rotate-180" : ""} text-lg ${userData[0].role!='Administrator'?'hidden':''}`}
       />
       <div
         className={`${
           showRoleDropdown ? " h-[120px] border" : "h-[0px] "
         }  overflow-hidden duration-300 flex flex-col items-start rounded-lg absolute w-full top-[45px] left-[50%] translate-x-[-50%] bg-white z-20`}
       >
-        {["Administrator", "Moderator", "Contributor"].map((role,i) => (
+        {["Administrator", "Moderator", "Contributor"].map((role) => (
           <p
-            key={i}
+            key={role}
             onClick={(e) => {
               handleChangeRole(e.target.innerHTML);
             }}

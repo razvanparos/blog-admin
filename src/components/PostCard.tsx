@@ -22,8 +22,8 @@ const PostCard = ({ post }: PostCardTypes) => {
       
       <p
         className={`text-sm lg:w-[100px] p-1 rounded-md text-slate-600 text-center h-fit
-            ${post.status == "Published" ? "bg-green-300" : ""} 
-            ${post.status == "Hidden" ? "bg-yellow-300" : ""} 
+            ${post.status === "Published" ? "bg-green-300" : ""} 
+            ${post.status === "Hidden" ? "bg-yellow-300" : ""} 
         `}
       >
         {post.status}
