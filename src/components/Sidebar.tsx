@@ -35,6 +35,7 @@ const Sidebar = () => {
   }, []);
 
   const handleLogOut = () => {
+    SideBarActions.toggleSidebar(false);
     logoutUser(navigate);
   };
 

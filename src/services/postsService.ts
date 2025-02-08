@@ -13,7 +13,7 @@ export const getCurrentUserPosts=async()=>{
     let response = await dbRequest.queryDb({
         table:'Posts',
         orderBy:orderBy("date", "desc"),
-        whereCondition:[where('authorId','==',sessionStorage.getItem('currentUser'))]
+        whereCondition:[where('authorId','==',localStorage.getItem('currentUser'))]
     })
    return response;
 }
@@ -22,7 +22,7 @@ export const saveNewPost=async(post)=>{
     let newId = "id" + Math.random().toString(16).slice(2)
     await dbRequest.setDb(newId,'Posts',{
         author: post.author,
-        authorId: sessionStorage.getItem('currentUser'),
+        authorId: localStorage.getItem('currentUser'),
         content: post.content,
         date: post.date,
         id: newId,

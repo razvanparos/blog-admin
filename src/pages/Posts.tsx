@@ -28,9 +28,9 @@ const Posts = () => {
     if (userData.length > 0) {
       setLoading(true);
       let posts = await getAllPosts() as PostType[];
-      if (userData[0].role === "Contributor") {
+      if (userData[0]?.role === "Contributor") {
         let currentUserPosts = posts.filter(
-          (p) => p.authorId === sessionStorage.getItem("currentUser")
+          (p) => p.authorId === localStorage.getItem("currentUser")
         );
         setPosts(currentUserPosts);
         setOriginalPosts(currentUserPosts);

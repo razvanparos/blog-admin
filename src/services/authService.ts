@@ -25,12 +25,10 @@ export const loginUser = async (loginEmail, loginPassword, rememberMe) => {
   if (loginEmail && loginPassword) {
     try {
       await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
-      if (rememberMe) {
-        localStorage.setItem("currentUser", auth?.currentUser?.uid || '');
-        sessionStorage.setItem("currentUser", auth?.currentUser?.uid || '');
-      } else {
-        sessionStorage.setItem("currentUser", auth?.currentUser?.uid || '');
-      }
+      localStorage.setItem("currentUser", auth?.currentUser?.uid || '');
+      if (!rememberMe) {
+        window.addEventListener("beforeunload", (e) => {localStorage.setItem('currentUser','')});
+      } 
     } catch (error) {
       throw errorMessages[error.code];
     }
@@ -44,7 +42,6 @@ export const logoutUser = async (navigate) => {
     await signOut(auth);
     navigate('/login')
     localStorage.removeItem('currentUser');
-    sessionStorage.removeItem('currentUser')
   } catch (error) {
     console.error("Logout failed:", error);
   }

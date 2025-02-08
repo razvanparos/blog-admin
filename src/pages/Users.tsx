@@ -18,7 +18,7 @@ const Users = () => {
     };
   
     useEffect(() => {
-        fetchUsers();
+      fetchUsers();
     }, []);
 
     useEffect(() => {

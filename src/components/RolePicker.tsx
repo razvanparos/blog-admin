@@ -22,20 +22,22 @@ function RolePicker({ user }) {
     UsersActions.setUserData(userData);
     NotificationActions.showNotification("Role updated!", "normal");
   };
+
   return (
     <section
       onClick={() => {
         setShowRoleDropdown(!showRoleDropdown);
       }}
       className={`
-        ${userData[0].role!='Administrator'?'pointer-events-none ':'border bg-slate-100'}
+        ${userData[0]?.role!=='Administrator'?'pointer-events-none ':'border bg-slate-100'}
       flex items-center justify-center rounded-lg lg:justify-between gap-x-2 cursor-pointer relative select-none 
        max-w-[170px] w-full p-2 
     `}
     >
+    {role ? <>
       <p className={"text-center lg:text-start"}>{role}</p>
       <MdKeyboardArrowDown
-        className={`duration-300 ${showRoleDropdown ? "rotate-180" : ""} text-lg ${userData[0].role!='Administrator'?'hidden':''}`}
+        className={`duration-300 ${showRoleDropdown ? "rotate-180" : ""} text-lg ${userData[0]?.role!=='Administrator'?'hidden':''}`}
       />
       <div
         className={`${
@@ -53,7 +55,8 @@ function RolePicker({ user }) {
             {role}
           </p>
         ))}
-      </div>
+      </div></>
+      :''}
     </section>
   );
 }

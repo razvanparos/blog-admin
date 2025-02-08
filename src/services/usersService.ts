@@ -9,7 +9,7 @@ export const getAllUsers=async()=>{
    return response;
 }
 export const getCurrentUserData=async()=>{
-    let response = await dbRequest.queryDb({table:'Users',whereCondition:[where("id", "==", sessionStorage.getItem('currentUser'))]})
+    let response = await dbRequest.queryDb({table:'Users',whereCondition:[where("id", "==", localStorage.getItem('currentUser'))]})
    return response;
 }
 

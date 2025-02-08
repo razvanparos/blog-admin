@@ -7,12 +7,6 @@ import UsersActions from "../context/actions/users-actions.ts";
 
 const Layout = () => {
   const initApp = async () => {
-    if (localStorage.getItem("currentUser")) {
-      sessionStorage.setItem(
-        "currentUser",
-        localStorage?.getItem("currentUser") || ""
-      );
-    }
     let users = await getAllUsers();
     let userData = (await getCurrentUserData()) as any;
     UsersActions.setUserData(userData);
