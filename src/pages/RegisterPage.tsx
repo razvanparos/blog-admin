@@ -6,6 +6,7 @@ import LinkComponent from "../components/LinkComponent.tsx";
 import { useNavigate } from "react-router-dom";
 import { registerUser } from "../services/authService.ts";
 import { addNewUser } from "../services/usersService.ts";
+import Input from "../components/Input.tsx";
 
 const RegisterPage = () => {
   const navigate = useNavigate();
@@ -52,34 +53,30 @@ const RegisterPage = () => {
       >
         <BlogLogo />
         <FormRow>
-          <input
+          <Input
             type="text"
             placeholder={"Name"}
             value={registerState.registerName}
-            onChange={(e) =>
+            onChangeFunction={(e) =>
               changeRegisterState("registerName", e.target.value)
             }
           />
         </FormRow>
         <FormRow>
-          <input
-            type="text"
+          <Input  type="text"
             placeholder={"Email address"}
             value={registerState.registerEmail}
-            onChange={(e) =>
+            onChangeFunction={(e) =>
               changeRegisterState("registerEmail", e.target.value)
-            }
-          />
+            }/>
         </FormRow>
         <FormRow>
-          <input
-            type="password"
+          <Input   type="password"
             placeholder={"Password"}
             value={registerState.registerPassword}
-            onChange={(e) =>
+            onChangeFunction={(e) =>
               changeRegisterState("registerPassword", e.target.value)
-            }
-          />
+            }/>
         </FormRow>
         <p className="text-red-500">{registerState.registerError}</p>
         <ButtonComponent

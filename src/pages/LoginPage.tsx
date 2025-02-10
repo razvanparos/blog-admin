@@ -5,6 +5,7 @@ import ButtonComponent from "../components/ButtonComponent.tsx";
 import LinkComponent from "../components/LinkComponent.tsx";
 import { useNavigate } from "react-router-dom";
 import { loginUser } from "../services/authService.ts";
+import Input from "../components/Input.tsx";
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -48,32 +49,32 @@ const LoginPage = () => {
       >
         <BlogLogo />
         <FormRow>
-          <input
+          <Input
             type="email"
             placeholder={"Email address"}
             value={loginState.loginEmail}
-            onChange={(e) => {
+            onChangeFunction={(e) => {
               changeLoginState("loginEmail", e.target.value);
             }}
           />
         </FormRow>
         <FormRow>
-          <input
+          <Input
             type="password"
             placeholder={"Password"}
             value={loginState.loginPassword}
-            onChange={(e) => {
+            onChangeFunction={(e) => {
               changeLoginState("loginPassword", e.target.value);
             }}
           />
         </FormRow>
         <div className="flex gap-x-2 items-center">
           <FormRow>
-            <input
+            <Input
               type="checkbox"
               placeholder={"Remember me"}
               value={loginState.rememberMe}
-              onChange={() => {
+              onChangeFunction={() => {
                 changeLoginState("rememberMe", !loginState.rememberMe);
               }}
             />

@@ -5,14 +5,14 @@ import SearchBarComponent from "../components/SearchBarComponent.tsx";
 import { AppContext } from "../context/AppContext.tsx";
 import PostsActions from "../context/actions/posts-actions.ts";
 
-export interface PostType{
-  author:string
-  authorId:string
-  content:string
-  date:string
-  id:string
-  status:string
-  title:string
+export interface PostType {
+  author: string;
+  authorId: string;
+  content: string;
+  date: string;
+  id: string;
+  status: string;
+  title: string;
 }
 
 const Posts = () => {
@@ -25,9 +25,9 @@ const Posts = () => {
   const [filter, setFilter] = useState("All");
 
   const fetchPosts = async () => {
-    setLoading(true);
     if (userData?.length > 0) {
-      let posts = await getAllPosts() as PostType[];
+      setLoading(true);
+      let posts = (await getAllPosts()) as PostType[];
       if (userData[0]?.role === "Contributor") {
         let currentUserPosts = posts.filter(
           (p) => p.authorId === localStorage.getItem("currentUser")
@@ -39,9 +39,9 @@ const Posts = () => {
         setPosts(posts);
         setOriginalPosts(posts);
         PostsActions.setPostsCount(posts.length);
-      }  
+      }
+      setLoading(false);
     }
-     setLoading(false);
   };
 
   useEffect(() => {

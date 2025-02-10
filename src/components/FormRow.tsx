@@ -10,11 +10,7 @@ const FormRow = ({ labelText, disabled, children }: FormRowType) => {
   return (
     <div className={`${disabled ? "opacity-50 cursor-not-allowed" : ""}`}>
       <LabelComponent labelText={labelText} />
-      {React.cloneElement(children, {
-        className: `${
-          children.props.className || ""
-        } w-full bg-gray-100 p-2 border rounded-md outline-none`,
-      })}
+      {children}
     </div>
   );
 };

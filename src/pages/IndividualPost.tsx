@@ -5,6 +5,8 @@ import IndividualPostHeader from "../components/IndividualPostHeader.tsx";
 import IndividualPostComments from "../components/IndividualPostsComments.tsx";
 import { months } from "../common/utils.ts";
 import { AppContext } from "../context/AppContext.tsx";
+import Input from "../components/Input.tsx";
+import TextArea from "../components/TextArea.tsx";
 
 const IndividualPost = () => {
   const location = useLocation();
@@ -47,44 +49,43 @@ const IndividualPost = () => {
       <article className="p-4 flex flex-col rounded-lg lg:border gap-y-4">
         <IndividualPostHeader postState={postState} />
         <FormRow labelText="Title">
-          <input
+          <Input
             type="text"
             placeholder={"Post title"}
             value={postState.title}
-            onChange={(e) => {
+            onChangeFunction={(e) => {
               changePostState("title", e.target.value);
             }}
           />
         </FormRow>
         <FormRow labelText="Author">
-          <input
+          <Input
             disabled={userData[0]?.role === "Contributor"}
             type={"text"}
             placeholder={"Post author"}
             value={postState.author}
-            onChange={(e) => {
+            onChangeFunction={(e) => {
               changePostState("author", e.target.value);
             }}
           />
         </FormRow>
         <FormRow labelText="Date">
-          <input
+          <Input
             type={"date"}
             value={postState.date}
-            onChange={(e) => {
+            onChangeFunction={(e) => {
               changePostState("date", e.target.value);
             }}
           />
         </FormRow>
         <FormRow labelText={"Content"}>
-          <textarea
-            className="min-h-[120px]"
+          <TextArea
             value={postState.content}
             placeholder={"Post content"}
-            onChange={(e) => {
+            onChangeFunction={(e) => {
               changePostState("content", e.target.value);
             }}
-          ></textarea>
+          />
         </FormRow>
         {postState.comments.length > 0 ? (
           <IndividualPostComments postState={postState} />
