@@ -25,8 +25,8 @@ const Posts = () => {
   const [filter, setFilter] = useState("All");
 
   const fetchPosts = async () => {
-    if (userData.length > 0) {
-      setLoading(true);
+    setLoading(true);
+    if (userData?.length > 0) {
       let posts = await getAllPosts() as PostType[];
       if (userData[0]?.role === "Contributor") {
         let currentUserPosts = posts.filter(
@@ -39,14 +39,12 @@ const Posts = () => {
         setPosts(posts);
         setOriginalPosts(posts);
         PostsActions.setPostsCount(posts.length);
-      }
-
-      setLoading(false);
+      }  
     }
+     setLoading(false);
   };
 
   useEffect(() => {
-    setLoading(true);
     fetchPosts();
   }, [userData]);
 
@@ -96,6 +94,7 @@ const Posts = () => {
         loading={loading}
         filter={filter}
         setFilter={setFilter}
+        search={postsSearch}
       />
     </div>
   );

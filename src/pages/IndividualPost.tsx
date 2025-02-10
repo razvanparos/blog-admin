@@ -5,7 +5,6 @@ import IndividualPostHeader from "../components/IndividualPostHeader.tsx";
 import IndividualPostComments from "../components/IndividualPostsComments.tsx";
 import { months } from "../common/utils.ts";
 import { AppContext } from "../context/AppContext.tsx";
-import TextareaComponent from "../components/TextareaComponent.tsx";
 
 const IndividualPost = () => {
   const location = useLocation();
@@ -44,44 +43,49 @@ const IndividualPost = () => {
   }, [userData]);
 
   return (
-    <div className="w-full p-4">
+    <div className="w-full lg:p-4">
       <article className="p-4 flex flex-col rounded-lg lg:border gap-y-4">
         <IndividualPostHeader postState={postState} />
-        <FormRow
-          labelText="Title"
-          type={"text"}
-          placeholder={"Post title"}
-          value={postState.title}
-          onChangeFunction={(e) => {
-            changePostState("title", e.target.value);
-          }}
-        />
-        <FormRow
-          disabled={userData[0]?.role === "Contributor"}
-          labelText="Author"
-          type={"text"}
-          placeholder={"Post author"}
-          value={postState.author}
-          onChangeFunction={(e) => {
-            changePostState("author", e.target.value);
-          }}
-        />
-        <FormRow
-          labelText="Date"
-          type={"date"}
-          value={postState.date}
-          onChangeFunction={(e) => {
-            changePostState("date", e.target.value);
-          }}
-        />
-        <TextareaComponent
-          labelText={"Content"}
-          value={postState.content}
-          placeholder={"Post content"}
-          onChangeFunction={(e) => {
-            changePostState("content", e.target.value);
-          }}
-        />
+        <FormRow labelText="Title">
+          <input
+            type="text"
+            placeholder={"Post title"}
+            value={postState.title}
+            onChange={(e) => {
+              changePostState("title", e.target.value);
+            }}
+          />
+        </FormRow>
+        <FormRow labelText="Author">
+          <input
+            disabled={userData[0]?.role === "Contributor"}
+            type={"text"}
+            placeholder={"Post author"}
+            value={postState.author}
+            onChange={(e) => {
+              changePostState("author", e.target.value);
+            }}
+          />
+        </FormRow>
+        <FormRow labelText="Date">
+          <input
+            type={"date"}
+            value={postState.date}
+            onChange={(e) => {
+              changePostState("date", e.target.value);
+            }}
+          />
+        </FormRow>
+        <FormRow labelText={"Content"}>
+          <textarea
+            className="min-h-[120px]"
+            value={postState.content}
+            placeholder={"Post content"}
+            onChange={(e) => {
+              changePostState("content", e.target.value);
+            }}
+          ></textarea>
+        </FormRow>
         {postState.comments.length > 0 ? (
           <IndividualPostComments postState={postState} />
         ) : (

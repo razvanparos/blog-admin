@@ -5,11 +5,10 @@ import SideBarActions from '../context/actions/sidebar-acions.ts';
 interface SidebarRowPropsType {
     name:string,
     icon:any,
-    count?:number,
     path:any
 }
 
-const SidebarRow = ({name,icon,count,path}:SidebarRowPropsType)=>{
+const SidebarRow = ({name,icon,path}:SidebarRowPropsType)=>{
     const toggleSidebar=()=>{
         if(window.innerWidth<1024){
             SideBarActions.toggleSidebar(false)
@@ -20,10 +19,6 @@ const SidebarRow = ({name,icon,count,path}:SidebarRowPropsType)=>{
         <Link onClick={toggleSidebar} to={path} className="p-3 flex items-center text-lg gap-x-2 cursor-pointer">
             {icon}
             <p className='w-full '>{name}</p>
-            {
-                count? count>0?<span className='text-lighGray'>{count}</span>:'':''
-            }
-
         </Link>
     );
 }

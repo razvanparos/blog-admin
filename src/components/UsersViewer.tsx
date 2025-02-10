@@ -1,12 +1,16 @@
-import * as React from "react";
+import React,{useContext} from "react";
 import Spinner from "./Spinner.tsx";
 import UserCard from "./UserCard.tsx";
 import ViewerHeader from "./ViewerHeader.tsx";
+import { AppContext } from "../context/AppContext.tsx";
 
 function UserViewer({ users, loading }) {
+  const {state}=useContext(AppContext)
+    const {usersCount}=state
+  
   return (
     <section className="lg:border rounded-xl w-full">
-      <h2 className="text-2xl p-4">Users</h2>
+      <h2 className="text-3xl p-4">{`${usersCount} Users`}</h2>
       <ViewerHeader headerTitles={['Name','Email','Joined','Role']}/>
       {users?.length > 0 ? (
         <div>

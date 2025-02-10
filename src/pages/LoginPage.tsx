@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import BlogLogo from "../components/Blog-logo.tsx";
 import FormRow from "../components/FormRow.tsx";
 import ButtonComponent from "../components/ButtonComponent.tsx";
@@ -8,47 +8,85 @@ import { loginUser } from "../services/authService.ts";
 
 const LoginPage = () => {
   const navigate = useNavigate();
-  const initialLoginState={
-    loginEmail:'',
-    loginPassword:'',
-    loginError:'',
+  const initialLoginState = {
+    loginEmail: "",
+    loginPassword: "",
+    loginError: "",
     rememberMe: false,
-    loading:false
-  }
-  const [loginState,setLoginState]=useState(initialLoginState)
-  
-  const changeLoginState = (fieldname,value)=>{
-    setLoginState((prevState)=>({
-      ...prevState,
-      [fieldname]:value
-    }))
-  } 
+    loading: false,
+  };
+  const [loginState, setLoginState] = useState(initialLoginState);
 
-  const handleLogin = async(e)=>{
+  const changeLoginState = (fieldname, value) => {
+    setLoginState((prevState) => ({
+      ...prevState,
+      [fieldname]: value,
+    }));
+  };
+
+  const handleLogin = async (e) => {
     e.preventDefault();
-    changeLoginState('loading',true)
-    try{
-      await loginUser(loginState.loginEmail, loginState.loginPassword, loginState.rememberMe);
-      navigate('/');
-    }catch(error){
-      changeLoginState('loginError',error)
+    changeLoginState("loading", true);
+    try {
+      await loginUser(
+        loginState.loginEmail,
+        loginState.loginPassword,
+        loginState.rememberMe
+      );
+      navigate("/");
+    } catch (error) {
+      changeLoginState("loginError", error);
     }
-    changeLoginState('loading',false)
-  }
+    changeLoginState("loading", false);
+  };
 
   return (
     <main className="flex justify-center">
-      <form onSubmit={handleLogin} className='flex flex-col py-6 px-2 gap-y-4 w-full max-w-[500px]'>
-        <BlogLogo/>
-        <FormRow type='email' placeholder={'Email address'} value={loginState.loginEmail} onChangeFunction={(e)=>{changeLoginState('loginEmail',e.target.value)}}/> 
-        <FormRow type='password' placeholder={'Password'} value={loginState.loginPassword} onChangeFunction={(e)=>{changeLoginState('loginPassword',e.target.value)}}/> 
-        <div className='flex gap-x-2 items-center'>
-          <FormRow type='checkbox' placeholder={'Remember me'} value={loginState.rememberMe} onChangeFunction={()=>{changeLoginState('rememberMe',!loginState.rememberMe)}}/> 
-          <p className='w-fit'>Remember me</p>
+      <form
+        onSubmit={handleLogin}
+        className="flex flex-col py-6 px-2 gap-y-4 w-full max-w-[500px]"
+      >
+        <BlogLogo />
+        <FormRow>
+          <input
+            type="email"
+            placeholder={"Email address"}
+            value={loginState.loginEmail}
+            onChange={(e) => {
+              changeLoginState("loginEmail", e.target.value);
+            }}
+          />
+        </FormRow>
+        <FormRow>
+          <input
+            type="password"
+            placeholder={"Password"}
+            value={loginState.loginPassword}
+            onChange={(e) => {
+              changeLoginState("loginPassword", e.target.value);
+            }}
+          />
+        </FormRow>
+        <div className="flex gap-x-2 items-center">
+          <FormRow>
+            <input
+              type="checkbox"
+              placeholder={"Remember me"}
+              value={loginState.rememberMe}
+              onChange={() => {
+                changeLoginState("rememberMe", !loginState.rememberMe);
+              }}
+            />
+          </FormRow>
+          <p className="w-fit">Remember me</p>
         </div>
-        <p className='text-red-500'>{loginState.loginError}</p>
-        <ButtonComponent text={'Login'} type='primary' loader={loginState.loading}/>
-        <LinkComponent text={'Create new account'} redirectTo={'register'}/>
+        <p className="text-red-500">{loginState.loginError}</p>
+        <ButtonComponent
+          text={"Login"}
+          type="primary"
+          loader={loginState.loading}
+        />
+        <LinkComponent text={"Create new account"} redirectTo={"register"} />
       </form>
     </main>
   );

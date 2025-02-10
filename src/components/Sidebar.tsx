@@ -43,7 +43,7 @@ const Sidebar = () => {
     <aside
       className={`flex fixed lg:sticky flex-col top-[75px] lg:top-0 duration-200 w-full h-[calc(100vh-75px)] lg:h-[calc(100vh-0px)] z-30 ${
         sidebar ? "left-0" : " translate-x-[-100%] "
-      } lg:w-[35%] xl:w-[25%] backdrop-blur-sm`}
+      } lg:w-[35%] xl:w-[20%] backdrop-blur-sm`}
     >
       <div className='hidden lg:flex'>
         <Header />
@@ -53,13 +53,11 @@ const Sidebar = () => {
         <SidebarRow
           name="Posts"
           icon={<TfiLayoutGrid2Alt  className="text-2xl text-darkBlue" />}
-          count={state.postsCount}
           path={"/"}
         />
         <SidebarRow
           name="Users"
           icon={<HiUserGroup  className="text-2xl text-darkBlue" />}
-          count={state.usersCount}
           path={"/users"}
         />
         <SidebarRow

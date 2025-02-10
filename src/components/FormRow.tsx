@@ -1,39 +1,21 @@
 import React from "react";
 import LabelComponent from "./LabelComponent.tsx";
 interface FormRowType {
-  type?: string;
-  placeholder?: string;
-  value?: any;
-  onChangeFunction?: Function;
   labelText?: string;
-  textarea?: boolean;
   disabled?: boolean;
+  children?: React.ReactNode;
 }
 
-const FormRow = ({
-  type,
-  placeholder,
-  value,
-  onChangeFunction,
-  labelText,
-  textarea,
-  disabled,
-}: FormRowType) => {
+const FormRow = ({ labelText, disabled, children }: FormRowType) => {
   return (
-    <>
+    <div className={`${disabled ? "opacity-50 cursor-not-allowed" : ""}`}>
       <LabelComponent labelText={labelText} />
-      <input
-        disabled={disabled}
-        placeholder={placeholder}
-        type={type}
-        className={`
-        bg-slate-100 border rounded-md p-2 outline-none text-dark
-        ${type === "checkbox" ? " bg-red-600 cursor-pointer" : "w-full"}
-        `}
-        value={value}
-        onChange={onChangeFunction}
-      />
-    </>
+      {React.cloneElement(children, {
+        className: `${
+          children.props.className || ""
+        } w-full bg-gray-100 p-2 border rounded-md outline-none`,
+      })}
+    </div>
   );
 };
 
