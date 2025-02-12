@@ -17,7 +17,7 @@ function Input({type,onChangeFunction,value,placeholder,disabled,searchBar}:Inpu
       placeholder={placeholder}
       value={value}
       onChange={onChangeFunction}
-      className={`${searchBar?'border-0':'border'} w-full bg-gray-100 p-2 rounded-md outline-none`}
+      className={`${searchBar?'border-0 bg-transparent':'border'} w-full bg-gray-100 p-2 rounded-md outline-none`}
     />
   );
 }

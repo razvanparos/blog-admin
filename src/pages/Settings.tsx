@@ -9,6 +9,7 @@ import {
 } from "../services/usersService.ts";
 import NotificationActions from "../context/actions/notification-actions.ts";
 import UsersActions from "../context/actions/users-actions.ts";
+import Input from "../components/Input.tsx";
 
 const Settings = () => {
   const { state } = useContext(AppContext);
@@ -51,12 +52,12 @@ const Settings = () => {
     <div className="w-full p-2 lg:p-4 flex flex-col overflow-y-scroll h-[calc(100vh-75px)] md:h-full gap-y-4 lg:max-w-[600px]">
       <h2 className="text-lg md:text-2xl ">Settings</h2>
       <FormRow labelText="Name">
-        <input
-          type={"text"}
-          value={settingsName}
+        <Input
+          type="text"
           onChangeFunction={(e) => {
             setSettingsName(e.target.value);
           }}
+          value={settingsName}
         />
       </FormRow>
       <ButtonComponent
@@ -66,8 +67,8 @@ const Settings = () => {
         loader={loading}
       />
       <FormRow labelText="New password">
-        <input
-          type={"password"}
+        <Input
+          type="password"
           value={settingsPassword}
           onChangeFunction={(e) => {
             setSettingsPassword(e.target.value);
@@ -75,7 +76,7 @@ const Settings = () => {
         />
       </FormRow>
       <FormRow labelText="Confirm password">
-        <input
+        <Input
           type={"password"}
           value={settingsConfirmPassword}
           onChangeFunction={(e) => {
